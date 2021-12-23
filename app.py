@@ -11,6 +11,7 @@ import logging
 from logging import Formatter, FileHandler
 from flask_wtf import Form
 from flask_migrate import Migrate
+from models import db,Show,Venue,Artist
 
 from forms import *
 #----------------------------------------------------------------------------#
@@ -21,7 +22,7 @@ app = Flask(__name__)
 moment = Moment(app)
 app.config.from_object('config')
 
-db = SQLAlchemy(app)
+db.init_app(app)
 
 migrate = Migrate(app,db)
 
@@ -36,60 +37,7 @@ migrate = Migrate(app,db)
 # #
 
 #Show Model
-class Show(db.Model):
-  __tablename__ = 'shows'
-  id = db.Column(db.Integer, primary_key = True)
-  start_time = db.Column(db.DateTime, nullable = False)
 
-
-  venue = db.relationship('Venue')
-  venue_id = db.Column(db.Integer, db.ForeignKey('venues.id', ondelete = 'CASCADE'), nullable = False)
-
-  artist = db.relationship('Artist')
-  artist_id = db.Column(db.Integer, db.ForeignKey('artists.id', ondelete = 'CASCADE') ,  nullable = False)
-
-#Venue Model
-
-class Venue(db.Model):
-    __tablename__ = 'venues'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    address = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    genres = db.Column(db.ARRAY(db.String))
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-    website_link = db.Column(db.String(120))
-    seeking_talent = db.Column(db.Boolean, default = False)
-    seeking_description = db.Column(db.String(500))
-    shows = db.relationship('Show')
-    artists = db.relationship('Artist',secondary = 'shows',back_populates = 'venues')
-
-
-
-#Artist Model
-
-class Artist(db.Model):
-    __tablename__ = 'artists'
-
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    city = db.Column(db.String(120))
-    state = db.Column(db.String(120))
-    phone = db.Column(db.String(120))
-    genres = db.Column(db.ARRAY(db.String))
-    image_link = db.Column(db.String(500))
-    facebook_link = db.Column(db.String(120))
-    website_link = db.Column(db.String(120))
-    seeking_venue = db.Column(db.Boolean, default = False)
-    seeking_description = db.Column(db.String(500))
-
-
-    shows = db.relationship('Show')
-    venues = db.relationship('Venue', secondary = 'shows', back_populates = 'artists')
 
     # TODO: implement any missing fields, as a database migration using Flask-Migrate
 
@@ -231,11 +179,7 @@ def show_venue(venue_id):
     data_venue = Venue.query.filter(Venue.id == venue_id).first()
 
     # Get the upcoming shows of this venue
-    upcoming_shows = Show.query \
-        .filter(Show.venue_id == venue_id) \
-        .filter(Show.start_time > datetime.now()) \
-        .all()
-
+    upcoming_shows = db.session.query(Show).join(Venue).filter(Show.venue_id==venue_id).filter(Show.start_time>datetime.now()).all()
     if len(upcoming_shows) > 0:
         data_upcoming_shows = []
 
@@ -258,10 +202,7 @@ def show_venue(venue_id):
         data_venue.upcoming_shows_count = len(data_upcoming_shows)
 
     # Get the past shows of this venue
-    past_shows = Show.query \
-        .filter(Show.venue_id == venue_id) \
-        .filter(Show.start_time < datetime.now()) \
-        .all()
+    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==venue_id).filter(Show.start_time>datetime.now()).all()
 
     if len(past_shows) > 0:
         data_past_shows = []
@@ -300,7 +241,7 @@ def create_venue_form():
 @app.route('/venues/create', methods=['POST'])
 def create_venue_submission():
     error = False
-    form = VenueForm()
+    form = VenueForm(csrf_enabled=False)
 
     # Form validation
     if not form.validate():
@@ -480,10 +421,8 @@ def show_artist(artist_id):
     data_artist = Artist.query.filter(Artist.id == artist_id).first()
 
     # Get the upcoming shows of this artist
-    upcoming_shows = Show.query \
-        .filter(Show.artist_id == artist_id) \
-        .filter(Show.start_time > datetime.now()) \
-        .all()
+    upcoming_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time>datetime.now()).all()
+
 
     if len(upcoming_shows) > 0:
         data_upcoming_shows = []
@@ -507,10 +446,7 @@ def show_artist(artist_id):
         data_artist.upcoming_shows_count = len(data_upcoming_shows)
 
     # Get the past shows of this venue
-    past_shows = Show.query \
-        .filter(Show.artist_id == artist_id) \
-        .filter(Show.start_time < datetime.now()) \
-        .all()
+    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time>datetime.now()).all()
 
     if len(past_shows) > 0:
         data_past_shows = []
@@ -716,7 +652,7 @@ def create_artist_form():
 @app.route('/artists/create', methods=['POST'])
 def create_artist_submission():
     error = False
-    form = ArtistForm()
+    form = ArtistForm(csrf_enabled=False)
 
     # Form validation
     if not form.validate():

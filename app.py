@@ -24,6 +24,10 @@ app.config.from_object('config')
 
 db.init_app(app)
 
+#----------------------------------------------------------------------------#
+# Setting up the db for migrations
+#----------------------------------------------------------------------------#
+
 migrate = Migrate(app,db)
 
 
@@ -39,9 +43,7 @@ migrate = Migrate(app,db)
 #Show Model
 
 
-    # TODO: implement any missing fields, as a database migration using Flask-Migrate
-
-# TODO Implement Show and Artist models, and complete all model relationships and properties, as a database migration.
+    
 
 #----------------------------------------------------------------------------#
 # Filters.
@@ -63,8 +65,6 @@ app.jinja_env.filters['datetime'] = format_datetime
 
 
 
-#  Venues
-#  ----------------------------------------------------------------
 
 
 def show_form_errors(fieldName, errorMessages):
@@ -77,6 +77,11 @@ def show_form_errors(fieldName, errorMessages):
     )
 
 
+
+
+#---------------------------------------------------------------------------#
+# Routes
+#---------------------------------------------------------------------------#
 @app.route('/')
 def index():
     return render_template('pages/home.html')

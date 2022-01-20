@@ -72,7 +72,7 @@ Overall:
 -----
 
 1. Connects to a local database defined in `config.py`.
-2. Using SQLAlcemy it sets up noramlized models for the objects defined in the `models.py`,
+2. Using SQLAlchemy it sets up noramlized models for the objects defined in the `models.py`,
 3. Implements model properties and relationships using database migrations via Flask-Migrate.
 3. Implements form submissions for creating new Venues, new Artists and Shows.Establishes proper key constraints in the database to avoid          duplicate or nonsensical form submissions.  
 4. Implements the following endpoints:

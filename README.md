@@ -1,10 +1,22 @@
-Fyyur
+Play Beat
 -----
 
 ## Introduction
 
-Fyyur is a musical venue and artist booking site that facilitates the discovery and bookings of shows between local performing artists and venues. This site lets you list new artists and venues, discover them, and list shows with artists as a venue owner.
+Play Beat is a musical venue and artist booking site that facilitates the discovery and bookings of shows between local performing artists and venues. This site lets you list new artists and venues, discover them, and list shows with artists as a venue owner.
 
+
+It implements various data models to power the API endpoints connects it to a PostgreSQL database for storing, querying, and creating information about artists and venues .
+
+## Overview
+
+This web app attempts at achieving the following:
+
+* creating new venues, artists, and creating new shows.
+* searching for venues and artists.
+* learning more about a specific artist or venue.
+
+Play Beat is the next platform that artists and musical venues can use to find each other, and discover new music shows.
 
 
 ## Tech Stack (Dependencies)
@@ -56,13 +68,111 @@ Overall:
 
 
 
+###Implementations
+-----
+
+1. Connects to a local database defined in `config.py`.
+2. Using SQLAlcemy it sets up noramlized models for the objects defined in the `models.py`,
+3. Implements model properties and relationships using database migrations via Flask-Migrate.
+3. Implements form submissions for creating new Venues, new Artists and Shows.Establishes proper key constraints in the database to avoid          duplicate or nonsensical form submissions.  
+4. Implements the following endpoints:
+
+## Endpoints
+
+## Venues
+
+### `GET /venues`
+
+- Fetches all the venues from the database
+- Request arguments: None
+- Returns: A list of venues filtered by cities and states
+
+
+
+
+### `GET /venues/<int:venue_id>`
+
+- Fetches a venue matching the venue id
+- Request arguments: Venue id
+- Returns: a fully detailed venue or `404 Not Found` if there's no venue matching that id 
+
+
+
+### `POST /venues/search`
+
+- Fetches venues matching the search term
+- Request arguments: Search term
+- Returns: A list of venues matches the search term
+
+
+
+### `POST /venues/create`
+
+- Creates a venue using the form values
+- Request arguments: Venue Form data
+- Returns: back to home
+
+
+
+
+### `DELETE /venues/<int:venue_id>`
+
+- Deletes a venue matching the venue id
+- Request arguments: Venue id
+- Returns: back to home
+
+## Artists
+
+### `GET /artists`
+
+- Fetches all the artists from the database
+- Request arguments: None
+- Returns: A list of artists
+
+
+
+### `GET /artists/<int:artist_id>`
+
+- Fetches an artist matching the artist id
+- Request arguments: None
+- Returns: an artist matching the artist id or `404 Not Found` if there's no artist matching that id 
+
+
+
+### `POST /artists/search`
+
+- Fetches artists matching the search term
+- Request arguments: Search term
+- Returns: A list of artists matches the search term
+
+
+
+### `POST /artists/create`
+
+- Creates an artist using the form values
+- Request arguments: Artist Form data
+- Returns: back to home
+
+
+### Shows 
+
+
+
+### `POST /shows/create`
+
+- Creates a show using the form data
+- Request arguments: Show Form data
+- Returns: back to home
+
+
+
 
 
 ## Development Setup
 1. **Download the project starter code locally**
 ```
 git clone https://github.com/udacity/FSND.git
-cd FSND/projects/01_fyyur/starter_code 
+cd FSND/projects/01_Play Beat/starter_code 
 ```
 
 2. **Create an empty repository in your Github account online. To change the remote repository path in your local repository, use the commands below:**

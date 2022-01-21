@@ -281,5 +281,5 @@ This app is deployed on Heroku. For deployment, you need to:
     heroku run python manage.py db upgrade --app name_of_your_application
 ```
 
-Heroku app hosted at https://beat-playz.herokuapp.com/
+Heroku app hosted at https://beat-playzz.herokuapp.com/
 

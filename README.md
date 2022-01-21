@@ -214,3 +214,72 @@ python3 app.py
 6. **Verify on the Browser**<br>
 Navigate to project homepage [http://127.0.0.1:5000/](http://127.0.0.1:5000/) or [http://localhost:5000](http://localhost:5000) 
 
+
+
+## Deployment
+This app is deployed on Heroku. For deployment, you need to:
+
+1. Install Heroku CLI and login to Heroku on the terminal
+
+2. create a [setup.sh](setup.sh) file and declare all your variables in the file
+
+3. Install gunicorn
+``` bash
+    pip install gunicorn
+```
+
+4. Create a [Procfile](Procfile) and add the line below. The Procfile instructs Heroku on what to do. Make sure that **your app** is housed in **[app.py](app.py)**
+``` bash
+    web: gunicorn app:app
+```
+
+5. Install the following requirements
+``` bash
+    pip install flask_script
+    pip install flask_migrate
+    pip install psycopg2-binary
+```       
+
+6. Freeze your requirements in the [requirements.txt](requirements.txt) file
+``` bash
+    pip freeze > requirements.txt
+```   
+
+7. Create Heroku app
+``` bash
+    heroku create name_of_your_app
+```
+        
+8. Add git remote for Heroku to local repository
+``` bash
+    git remote add heroku heroku_git_url
+``` 
+
+9. Add postgresql add on for our database
+``` bash
+    heroku addons:create heroku-postgresql:hobby-dev --app name_of_your_application
+```
+10. Add all the Variables in Heroku under settings
+``` bash
+    # This should already exist from the last step
+    DATABASE_URL
+    # Get these from Auth0
+    AUTH0_DOMAIN
+    ALGORITHMS
+    API_AUDIENCE
+```
+        
+10. Push any changes to your GitHub Repository
+
+11. Push to Heroku
+``` bash
+    git push heroku master
+```      
+
+12. Run Migrations to the Heroku database
+``` bash
+    heroku run python manage.py db upgrade --app name_of_your_application
+```
+
+Heroku app hosted at https://beat-playz.herokuapp.com/
+

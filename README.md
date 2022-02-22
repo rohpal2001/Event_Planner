@@ -282,4 +282,8 @@ This app is deployed on Heroku. For deployment, you need to:
 ```
 
 Heroku app hosted at https://beat-playzz.herokuapp.com/
+![play_beat-1](https://user-images.githubusercontent.com![play-beat-2](https://user-images.githubusercontent.com/71264542/155092291-bc5c98d7-30b4-4e3e-8f3b-c639c0307fc9.png)
+/71264542/155092278-a105d7a8-6cfa-4017-8020-26bbef4bbea3.png)
+![play-beat-3](https://user-images.githubusercont![play-beat-4](https://user-images.githubusercontent.com/71264542/155092316-b688c6d8-6813-4e20-aef0-7019869981f0.png)
+ent.com/71264542/155092301-dbbb55ed-8977-42de-b787-56d1e6822f0b.png)
 

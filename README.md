@@ -18,6 +18,13 @@ This web app attempts at achieving the following:
 
 Play Beat is the next platform that artists and musical venues can use to find each other, and discover new music shows.
 
+![play_beat-1](https://user-images.githubusercontent.com/71264542/155092469-9b84f10c-943c-477d-907c-dd0ec2bd9f6b.png)
+
+![play-beat-2](https://user-images.githubusercontent.com/71264542/155092509-80328763-c51f-4d1c-9661-c34fba808184.png)
+
+![play-beat-3](https://user-images.githubusercontent.com/71264542/155092536-9972d5bc-d31f-44e6-ab65-ca06d91c76e4.png)
+![play-beat-4](https://user-images.githubusercontent.com/71264542/155092580-88323fd5-13ea-438f-9992-fb015180af76.png)
+
 
 ## Tech Stack (Dependencies)
 
@@ -282,11 +289,6 @@ This app is deployed on Heroku. For deployment, you need to:
 ```
 
 Heroku app hosted at https://beat-playzz.herokuapp.com/
-![play_beat-1](https://user-images.githubusercontent.com/71264542/155092469-9b84f10c-943c-477d-907c-dd0ec2bd9f6b.png)
 
-![play-beat-2](https://user-images.githubusercontent.com/71264542/155092509-80328763-c51f-4d1c-9661-c34fba808184.png)
-
-![play-beat-3](https://user-images.githubusercontent.com/71264542/155092536-9972d5bc-d31f-44e6-ab65-ca06d91c76e4.png)
-![play-beat-4](https://user-images.githubusercontent.com/71264542/155092580-88323fd5-13ea-438f-9992-fb015180af76.png)
 
 

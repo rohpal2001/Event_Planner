@@ -18,15 +18,22 @@ This web app attempts at achieving the following:
 
 Play Beat is the next platform that artists and musical venues can use to find each other, and discover new music shows.
 
-![play_beat-1](https://user-images.githubusercontent.com/71264542/155092469-9b84f10c-943c-477d-907c-dd0ec2bd9f6b.png)
 
-![play-beat-2](https://user-images.githubusercontent.com/71264542/155092509-80328763-c51f-4d1c-9661-c34fba808184.png)
+![first](https://user-images.githubusercontent.com/71264542/175565372-d81b3375-a62c-420e-8ab6-623f9309e006.png)
 
-![play-beat-3](https://user-images.githubusercontent.com/71264542/155092536-9972d5bc-d31f-44e6-ab65-ca06d91c76e4.png)
-![play-beat-4](https://user-images.githubusercontent.com/71264542/155092580-88323fd5-13ea-438f-9992-fb015180af76.png)
+![fourth](https://user-images.githubusercontent.com/71264542/175565460-187d4605-c738-4280-b261-0936e5a0a25b.png)
+
+![fifth](https://user-images.githubusercontent.com/71264542/175565492-b30b34f2-fcb6-4bf3-8f8d-4bc4723e93f5.png)
+
+![sixth](https://user-images.githubusercontent.com/71264542/175565504-f4486705-1f09-4419-b9e8-cdf736316607.png)
+
+![7](https://user-images.githubusercontent.com/71264542/175565512-8a8307d2-a9cc-42fb-94d7-47c20420841b.png)
+
+![8](https://user-images.githubusercontent.com/71264542/175565570-ee22b5e7-292e-49ec-b6f4-51d38cb88ae3.png)
 
 
 ## Tech Stack (Dependencies)
+
 
 ### 1. Backend Dependencies
 Our tech stack will include the following:
@@ -288,7 +295,7 @@ This app is deployed on Heroku. For deployment, you need to:
     heroku run python manage.py db upgrade --app name_of_your_application
 ```
 
-Heroku app hosted at https://beat-playzz.herokuapp.com/
+Heroku app hosted at (https://playz-beatz.herokuapp.com/)
 
 
 

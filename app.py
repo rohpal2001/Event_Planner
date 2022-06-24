@@ -207,7 +207,7 @@ def show_venue(venue_id):
         data_venue.upcoming_shows_count = len(data_upcoming_shows)
 
     # Get the past shows of this venue
-    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==venue_id).filter(Show.start_time>datetime.now()).all()
+    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==venue_id).filter(Show.start_time<datetime.now()).all()
 
     if len(past_shows) > 0:
         data_past_shows = []
@@ -451,7 +451,7 @@ def show_artist(artist_id):
         data_artist.upcoming_shows_count = len(data_upcoming_shows)
 
     # Get the past shows of this venue
-    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time>datetime.now()).all()
+    past_shows = db.session.query(Show).join(Venue).filter(Show.artist_id==artist_id).filter(Show.start_time<datetime.now()).all()
 
     if len(past_shows) > 0:
         data_past_shows = []
